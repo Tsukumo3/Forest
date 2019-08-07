@@ -1,0 +1,104 @@
+package forest;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ForestModel {
+
+	/**
+	 * 依存物（Observerデザインパターンの観測者）：Viewのインスタンスたちを束縛する。
+	 * 良好（2010年7月25日）
+	 */
+	protected ArrayList<ForestView> dependents;
+
+	private File textFile;
+
+	/**
+	 * インスタンスを生成して初期化して応答する。
+	 * 良好（2010年7月25日）
+	 */
+	public ForestModel(File aFile)
+	{
+		super();
+		this.initialize(aFile);
+		return;
+	}
+
+
+
+	/**
+	 * 指定されたビューを依存物に設定する。
+	 * @param aForestView このモデルの依存物となるビュー
+	 *
+	 */
+	public void addDependent(ForestView aForestView)
+	{
+		dependents.add(aForestView);
+		return;
+	}
+
+	/**
+	 * モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
+	 *
+	 *
+	 */
+	public void changed()
+	{
+		Iterator<ForestView> anIterator = dependents.iterator();
+		while (anIterator.hasNext())
+		{
+			ForestView aForestView = anIterator.next();
+			aForestView.update();
+		}
+		return;
+	}
+
+	/**
+	 * 初期化する。
+	 *
+	 */
+	private void initialize(File aFile)
+	{
+		dependents = new ArrayList<ForestView>();
+		textFile = aFile;
+		return;
+	}
+
+	/**
+	 * 最初に読み込まれる
+	 *
+	 */
+	public void animate(){
+
+		/*
+		 * データ解析　
+		 * ノードを取得
+		 * ツリー構造化する
+		 * それをViewに渡す
+		 */
+
+
+
+		//Viewに送る
+		changed();
+	}
+
+	/**
+	 * このインスタンスを文字列にして応答する。
+	 * @return 自分自身を表す文字列
+	 */
+	public String toString()
+	{
+		StringBuffer aBuffer = new StringBuffer();
+		Class<?> aClass = this.getClass();
+		aBuffer.append(aClass.getName());
+		/*
+		aBuffer.append("[picture=");
+		aBuffer.append(picture);
+		aBuffer.append("]");
+		*/
+		return aBuffer.toString();
+	}
+
+}

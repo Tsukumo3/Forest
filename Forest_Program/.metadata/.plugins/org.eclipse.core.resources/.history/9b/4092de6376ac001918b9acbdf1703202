@@ -1,0 +1,56 @@
+package forest;
+
+import java.awt.Point;
+import java.util.ArrayList;
+
+public class Node {
+
+	private String nodeName;
+	private Integer nodeNumber;
+
+	ArrayList<Node> parents;
+	ArrayList<Node> children;
+
+	Point point;
+
+
+	public Node(Integer aInteger,String aString,Point aPoint){
+		this.nodeName = aString;
+		this.nodeNumber = aInteger;
+		this.parents = new ArrayList<Node>();
+		this.children = new ArrayList<Node>();
+		this.point = aPoint;
+	}
+
+	public String getName(){
+		return this.nodeName;
+	}
+
+	public void setName(String aString){
+		this.nodeName = aString;
+	}
+
+	public Integer getNumber(){
+		return this.nodeNumber;
+	}
+
+	public void setNumber(Integer aInteger){
+		this.nodeNumber = aInteger;
+	}
+	public ArrayList<Node> getParents(){
+		return this.parents;
+	}
+	public ArrayList<Node> getChildren(){
+		return this.children;
+	}
+
+	public Point getPoint(){
+		return this.point;
+	}
+	public void setPoint(Point aPoint){
+		this.point = aPoint;
+	}
+	}
+	}
+
+}

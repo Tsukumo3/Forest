@@ -1,0 +1,11 @@
+package forest;
+
+import javax.swing.JPanel;
+
+public class ForestView extends JPanel{
+
+	ForestView(ForestModel aForestModel){
+
+	}
+
+}

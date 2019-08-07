@@ -1,0 +1,66 @@
+package forest;
+
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+public class Node extends JFrame{
+
+	private String nodeName;
+	private Integer nodeNumber;
+
+	ArrayList<Node> parents;
+	ArrayList<Node> children;
+	/**
+	 * 座標
+	 */
+	Point point;
+
+	int textWidth;
+
+	public Node(Integer aInteger,String aString,Point aPoint){
+		this.nodeName = aString;
+		this.nodeNumber = aInteger;
+		this.parents = new ArrayList<Node>();
+		this.children = new ArrayList<Node>();
+		this.point = aPoint;
+
+		//描画時の文字列の長さ
+		Font font1 = new Font("Arial",Font.PLAIN,12);
+		this.textWidth = getFontMetrics(font1).stringWidth(aString);
+
+	}
+
+	public String getName(){
+		return this.nodeName;
+	}
+
+	public void setName(String aString){
+		this.nodeName = aString;
+	}
+
+	public Integer getNumber(){
+		return this.nodeNumber;
+	}
+
+	public void setNumber(Integer aInteger){
+		this.nodeNumber = aInteger;
+	}
+	public ArrayList<Node> getParents(){
+		return this.parents;
+	}
+	public ArrayList<Node> getChildren(){
+		return this.children;
+	}
+
+	public Point getPoint(){
+		return this.point;
+	}
+	public void setPoint(Point aPoint){
+		this.point = aPoint;
+	}
+
+}

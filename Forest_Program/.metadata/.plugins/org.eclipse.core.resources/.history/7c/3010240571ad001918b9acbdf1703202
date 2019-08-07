@@ -1,0 +1,400 @@
+package forest;
+
+import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+
+public class ForestModel {
+
+	/**
+	 * 依存物（Observerデザインパターンの観測者）：Viewのインスタンスたちを束縛する。
+	 * 良好（2010年7月25日）
+	 */
+	protected ArrayList<ForestView> dependents;
+
+	private File textFile;
+
+	private ArrayList<Node> nodes;
+
+	public int leaf = 0;
+
+	public final int height = 20;
+
+	public final int distance = 30;
+
+	/**
+	 * インスタンスを生成して初期化して応答する。
+	 * 良好（2010年7月25日）
+	 * @throws FileNotFoundException
+	 */
+	public ForestModel(File aFile) throws FileNotFoundException
+	{
+		super();
+		//this.initialize(aFile);
+		dependents = new ArrayList<ForestView>();
+		nodes = new ArrayList<Node>();
+		this.readFile(aFile);
+
+		return;
+	}
+
+
+
+	/**
+	 * 指定されたビューを依存物に設定する。
+	 * @param aForestView このモデルの依存物となるビュー
+	 *
+	 */
+	public void addDependent(ForestView aForestView)
+	{
+		dependents.add(aForestView);
+		return;
+	}
+
+	/**
+	 * モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
+	 *
+	 *
+	 */
+	public void changed()
+	{
+		Iterator<ForestView> anIterator = dependents.iterator();
+		while (anIterator.hasNext())
+		{
+			ForestView aForestView = anIterator.next();
+			aForestView.update();
+		}
+		return;
+	}
+
+	/**
+	 * 初期化する。
+	 *
+	 */
+	/*
+	private void initialize(File aFile)
+	{
+		dependents = new ArrayList<ForestView>();
+		setTextFile(aFile);
+		return;
+	}
+	*/
+
+	public void readFile(File aFile) throws FileNotFoundException{
+
+		FileInputStream fi = new FileInputStream(aFile);
+		InputStreamReader is = new InputStreamReader(fi);
+    	BufferedReader br = new BufferedReader(is);
+		try {
+	    	//読み込み行
+    		String line;
+
+    		//処理するデータの内容を保管
+    		String currentReadContext = null;
+
+    		//1行ずつ読み込みを行う
+    		while ((line = br.readLine()) != null) {
+
+    			//カンマで分割した内容を配列に格納する
+    			//String[] data = line.split(",");
+
+    	        //現在読み込んでいるデータを判別//次の行へ
+    	        if(line.equals("trees:")){ currentReadContext = "trees"; continue;}
+    	        if(line.equals("nodes:")){ currentReadContext = "nodes"; continue;}
+    	        if(line.equals("branches:")){ currentReadContext = "branches"; continue;}
+
+    	        //treeからの情報を取得
+    	        //if(currentReadContext == "trees"){
+    	        	//trees(line);
+    	        //}
+    	        if(currentReadContext.equals("nodes")){ node(line); }
+    	        if(currentReadContext.equals("branches")){ branches(line); }
+
+    		}
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public void node(String line){
+		//読み込んだデータを分割
+		String[] data = line.split(", ");
+
+		//初期座標
+		int x = 10;
+		int y = 30 + height*getNodes().size();
+		Point aPoint = new Point(x,y);
+
+		getNodes().add(new Node( Integer.parseInt(data[0]),data[1],aPoint));
+		return;
+	}
+
+	public void branches(String line){
+		String[] data = line.split(", ");
+		Integer parentNodeNumber = Integer.parseInt(data[0]);
+		Integer childNodeNumber = Integer.parseInt(data[1]);
+
+		Node parentNode = getNodes().get(parentNodeNumber - 1);
+		Node childNode =  getNodes().get(childNodeNumber - 1);
+
+		//データ、左側のノードに、子ノードを割り当てる
+		parentNode.getChildren().add(childNode);
+		//データ、右側のノードに、親ノードを割り当てる
+		childNode.getParents().add(parentNode);
+		return;
+	}
+
+
+	/**
+	 * 最初に読み込まれる
+	 *
+	 */
+	public void animate(){
+
+		/*
+		 * データ解析　
+		 * ノードを取得
+		 * ツリー構造化する
+		 * それをViewに渡す
+		 */
+
+		for(Node node :getNodes() ){
+			//根ノードを最初に描画
+			if(node.getParents().size() == 0){
+				//print(node,-1);
+			}
+		}
+		for(Node node :getNodes() ){
+			//根ノードを最初に描画
+			if(node.getParents().size() == 0){
+				//move(node);
+				move(node,null);
+			}
+		}
+
+
+		//Viewに送る
+		//changed();
+	}
+/*
+	public void move(Node node){
+
+		int x;//parentX()  + distance
+		int y;//parent Y + height * leaf
+		Point aPoint;
+
+
+		int rootNodeY = 30;
+
+		if(node.getParents().size() == 0){
+			//親ノードがない時、根ノード
+			x = 200;
+			y = 30 + 20*leaf;
+			rootNodeY = y;
+		}
+		else{
+			x = (int)node.getParents().get(0).getPoint().getX() + node.getParents().get(0).getTextWidth()+ 10 + distance;
+			y = rootNodeY + leaf * height;
+		}
+		//モデル座標を設定
+		aPoint = new Point(x,y);
+		node.setPoint(aPoint);
+		//View座標を設定
+		node.setViewPoint(aPoint);
+
+		long millis = 500;
+
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		changed();
+
+		//葉ノードとき加算
+		if(node.getChildren().size()==0){
+			leaf = leaf +1;
+		}
+
+		//子ノードがあれば移動
+		for(Node child : node.getChildren()){
+
+			move(child);
+
+		}
+
+		//自分を調整
+
+		int y_childOfAve = 0;
+		if(node.getChildren().size() != 0){
+			for(int i = 0; i < node.getChildren().size();i++){
+				y_childOfAve += node.getChildren().get(i).getPoint().getY();
+			}
+			y_childOfAve = y_childOfAve/node.getChildren().size();
+		}
+		else{
+			y_childOfAve =  (int)node.getPoint().getY();
+		}
+		node.setViewPoint(new Point((int)node.getPoint().getX(), y_childOfAve));
+	}*/
+	
+	public void move(Node node,Node parent){
+
+		node.setIsSearched(true);
+		
+		int x;//parentX()  + distance
+		int y;//parent Y + height * leaf
+		Point aPoint;
+
+
+		int rootNodeY = 30;
+
+		if(node.getParents().size() == 0){
+			//親ノードがない時、根ノード
+			x = 200;
+			y = 30 + 20*leaf;
+			rootNodeY = y;
+		}
+		else{
+			x = (int)parent.getPoint().getX() + parent.getTextWidth()+ 10 + distance;
+			y = rootNodeY + leaf * height;
+		}
+		//モデル座標を設定
+		aPoint = new Point(x,y);
+		node.setPoint(aPoint);
+		//View座標を設定
+		node.setViewPoint(aPoint);
+
+		long millis = 500;
+
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		changed();
+
+		//葉ノードとき加算
+		if(node.getChildren().size()==0){
+			leaf = leaf +1;
+		}
+
+		//子ノードがあれば移動
+		//名前順でそーと
+		//node.getChildren().sort( (a,b)->a.getName().compareTo( b.getName() )  );
+		node.getChildren().sort(Comparator.comparing(Node::getName));
+		for(Node child : node.getChildren()){
+			if(!child.getIsSearched()){
+				move(child,node);
+			}
+			else{
+				
+			}
+		}
+		//自分を調整
+		
+		//自分の子ノードが全て探索なら葉ノードと同じ表示方法をとる。
+		//座標の更新を行わない
+		boolean isAllOfChildNodeSearched = true;
+		for(Node child : node.getChildren()){
+			if(!child.getIsSearched()){
+				isAllOfChildNodeSearched = false;
+			}
+		}
+		if(isAllOfChildNodeSearched){
+			return;
+		}
+		//そうでない場合は座標を調整する
+		else{
+			arrangeNodeY(node);
+		}
+		return;
+	}
+	
+	public void arrangeNodeY(Node node){
+		int y_childOfAve = 0;
+		if(node.getChildren().size() != 0){
+			for(int i = 0; i < node.getChildren().size();i++){
+				y_childOfAve += node.getChildren().get(i).getPoint().getY();
+			}
+			y_childOfAve = y_childOfAve/node.getChildren().size();
+		}
+		else{
+			y_childOfAve =  (int)node.getPoint().getY();
+		}
+		node.setViewPoint(new Point((int)node.getPoint().getX(), y_childOfAve));
+		return;
+	}
+
+	public void print(Node node,Integer time){
+
+		time = time + 1;
+		String branch = "+ ";
+		for(int i = 0; i < time; i++){ branch = branch + "- " ;}
+
+		System.out.println(branch+node.getName());
+
+		for(Node child : node.getChildren()){
+
+			print(child,time);
+
+		}
+	}
+	public void pointCalc(){
+
+	// int w = g.getFontMetrics().stringWidth(msg); 文字列の幅を入手できる
+	}
+
+
+	/**
+	 * このインスタンスを文字列にして応答する。
+	 * @return 自分自身を表す文字列
+	 */
+	public String toString()
+	{
+		StringBuffer aBuffer = new StringBuffer();
+		Class<?> aClass = this.getClass();
+		aBuffer.append(aClass.getName());
+		/*
+		aBuffer.append("[picture=");
+		aBuffer.append(picture);
+		aBuffer.append("]");
+		*/
+		return aBuffer.toString();
+	}
+
+
+
+	public File getTextFile() {
+		return textFile;
+	}
+
+
+
+	public void setTextFile(File textFile) {
+		this.textFile = textFile;
+	}
+
+
+
+	public ArrayList<Node> getNodes() {
+		return nodes;
+	}
+
+
+
+	public void setNodes(ArrayList<Node> nodes) {
+		this.nodes = nodes;
+	}
+
+}

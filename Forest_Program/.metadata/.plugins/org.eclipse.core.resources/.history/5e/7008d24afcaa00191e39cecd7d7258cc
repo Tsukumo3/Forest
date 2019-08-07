@@ -1,0 +1,9 @@
+package forest;
+
+public class ForestView {
+
+	ForestView(ForestModel aForestModel){
+
+	}
+
+}

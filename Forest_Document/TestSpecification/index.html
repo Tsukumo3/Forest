@@ -1,0 +1,1012 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta name="keywords" content="Tsukumo,Program,Programmer,Object,Oriented,Programming">
+<meta name="description" content="Forest Project">
+<meta name="author" content="Tsukumo">
+<link rev="made" href="index.html">
+<link rel="index" href="index.html">
+<style type="text/css">
+<!--
+body {
+  background-color : #ffffff;
+  margin : 20px;
+  padding : 10px;
+  font-family : serif;
+  font-size : 10pt;
+}
+a {
+  text-decoration : underline;
+  color : #000000;
+}
+a:link {
+  background-color : #ffddbb;
+}
+a:visited {
+  background-color : #ccffcc;
+}
+a:hover {
+  background-color : #dddddd;
+}
+a:active {
+  background-color : #dddddd;
+}
+div.belt {
+  background-color : #eeeeee;
+  padding : 0px 4px;
+}
+div.belt-yellow {
+  background-color : #ffffcc;
+  padding : 0px 4px;
+}
+div.belt-blue {
+  background-color : #ddeeff;
+  padding : 0px 4px;
+}
+div.right-small {
+  text-align : right;
+  font-size : 8pt;
+}
+img.border {
+  border-width : 1px;
+  border-color : #000000;
+  vertical-align : middle;
+}
+img.borderless {
+  border-width : 0px;
+  vertical-align : middle;
+}
+p.belt {
+  background-color : #ffeedd;
+  padding : 4px 8px;
+}
+p.belt-blue {
+  background-color : #ddeeff;
+  padding : 4px 8px;
+}
+pre.belt {
+  background-color : #ddeeff;
+  padding : 4px 8px;
+}
+pre.belt-yellow {
+  background-color : #ffffcc;
+  padding : 4px 8px;
+}
+table {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  font-family : serif;
+  font-size : 10pt;
+}
+table.profile {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  font-family : serif;
+  font-size : 10pt;
+  margin-top : 8px;
+  margin-left : 8px;
+  margin-right : 8px;
+  margin-bottom : 8px;
+}
+table.belt {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  background-color : #ffeedd;
+  padding : 0px 0px;
+  width : 100%;
+}
+table.content {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 2px 4px;
+}
+table.font-fixed {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 2px 4px;
+  font-family : monospace;
+}
+table.nest {
+  border-style : solid;
+  border-width : 0px;
+  border-color : #000000;
+  padding : 0px 0px;
+}
+td {
+  padding : 0px 0px;
+  vertical-align : middle;
+}
+td.center {
+  text-align : center;
+}
+td.center-half {
+  text-align : center;
+  width : 50%;
+  font-size : 8pt;
+}
+td.center-small {
+  text-align : center;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.center-small-nopadding {
+  text-align : center;
+  font-size : 8pt;
+  padding : 0px 0px;
+}
+td.center-white {
+  text-align : center;
+  background-color : #ffffff;
+}
+td.center-small-white {
+  text-align : center;
+  font-size : 8pt;
+  background-color : #ffffff;
+}
+td.center-border1 {
+  text-align : center;
+  vertical-align : middle;
+  empty-cells : show;
+  border-style : solid;
+  border-width : 1px;
+  border-color : #ffc080;
+  width : 22px;
+  height : 22px;
+}
+td.left-small {
+  text-align : left;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.left-small-white {
+  text-align : left;
+  font-size : 8pt;
+  padding : 0px 4px;
+  background-color : #ffffff;
+}
+td.right-small {
+  text-align : right;
+  font-size : 8pt;
+  padding : 0px 4px;
+}
+td.right-small-white {
+  text-align : right;
+  font-size : 8pt;
+  padding : 0px 4px;
+  background-color : #ffffff;
+}
+th {
+  padding : 0px 0px;
+  vertical-align : middle;
+}
+#menu {
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
+  height: 32px;
+}
+#menu ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-align: center;
+  clear: both;
+}
+#menu li {
+  margin: 0px 5px 0px 0px;
+  padding: 0px;
+  float: left;
+}
+#menu a {
+  display: block;
+  padding: 2px 4px;
+  text-decoration: none;
+  margin: 0px;
+  font-weight: bold;
+  background: #FFFFFF;
+  color: #333333;
+  border: 1px solid #666666;
+}
+#menu a:hover {
+  display: block;
+  padding: 2px 4px;
+  border-bottom: 1px solid #000000;
+  text-decoration: none;
+  background: #FFCC66;
+}
+#menu .current {
+  background-color: #F45F57;
+  font-weight: bold;
+  color: #FFFFFF;
+  border: 1px solid #333333;
+}
+-->
+</style>
+<title>樹状整列「Forest」テスト仕様書</title>
+</head>
+<body>
+<div id="menu">
+<ul>
+  <li><a href="../index.html">ホーム</a></li>
+  <li><a href="../Requirement/index.html">要求仕様書</a></li>
+  <li><a href="../DevelopmentPlan/index.html">開発計画書</a></li>
+  <li><a href="../BasicDesign/index.html">基本設計書</a></li>
+  <li><a href="../DetailDesign/index.html">詳細設計書</a></li>
+  <li><a href="../TestSpecification/index.html" class="current">テスト仕様書</a></li>
+  <li><a href="../TestResult/index.html">テスト結果</a></li>
+  <li><a href="../DevelopmentResult/index.html">開発実績</a></li>
+  <li><a href="../Program/index.html">プログラム</a></li>
+  <li><a href="../Manual/index.html">マニュアル</a></li>
+</ul>
+</div>
+<hr>
+<h2>樹状整列「Forest」テスト仕様書</h2>
+<ul>
+  <li><a href="#Example">Example</a>（メインクラス）
+  <li><a href="#ForestModel">ForestModel</a>（モデル）
+  <li><a href="#ForestView">ForestView</a>（ビュー）
+  <li><a href="#ForestController">ForestController</a> ( コントローラ )
+  <li><a href="#Node">Node</a>（ノード）
+</ul>
+<div class="belt">
+<h3><a name="Example" href="../Program/index.html#Example">Example（メインクラス）</a></h3>
+</div>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">フィールド（属性：インスタンス変数）</th>
+            <th class="left-padding" abbr="2">束縛</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>なし</code></td>
+            <td class="left-padding"><code>なし</code></td>
+            <td class="left-padding"><code>なし</code></td>
+            <td class="left-padding">なし</td>
+            <td class="left-padding">なし</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">メソッド（操作）</th>
+            <th class="left-padding" abbr="2">応答</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Example.html#line.19">main(String[] arguments)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public static</code></td>
+            <td class="left-padding">ファイル選択ウィンドウでファイルを選択し、樹上整列を表示する準備をする</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="belt">
+<h3><a name="ForestModel" href="../Program/index.html#ForestModel">ForestModel（モデル）</a></h3>
+</div>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">フィールド（属性：インスタンス変数）</th>
+            <th class="left-padding" abbr="2">束縛</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>dependents</code></td>
+            <td class="left-padding"><code>ArrayList&lt;ForestView&gt;</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">依存物（Observerデザインパターンの観測者）：Viewのインスタンスたちを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>distance</code></td>
+            <td class="left-padding"><code>int</code></td>
+            <td class="left-padding"><code>public final</code></td>
+            <td class="left-padding">表示する際のx軸において、ノードごとの間隔</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>height</code></td>
+            <td class="left-padding"><code>int</code></td>
+            <td class="left-padding"><code>public final</code></td>
+            <td class="left-padding">表示する際の一つのノードの高さ</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>leaf</code></td>
+            <td class="left-padding"><code>int</code></td>
+            <td class="left-padding"><code>public final</code></td>
+            <td class="left-padding">葉ノードの個数を保持する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>leaf</code></td>
+            <td class="left-padding"><code>int</code></td>
+            <td class="left-padding"><code>public final</code></td>
+            <td class="left-padding">葉ノードの個数を保持する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>millis</code></td>
+            <td class="left-padding"><code>long</code></td>
+            <td class="left-padding"><code>public final</code></td>
+            <td class="left-padding">アニメーションする際の速度</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>nodes</code></td>
+            <td class="left-padding"><code>ArrayList&lt;Node&gt;</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードのリストを束縛する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">メソッド（操作）</th>
+            <th class="left-padding" abbr="2">応答</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.58">ForestModel</a></code></td>
+            <td class="left-padding"><code> </code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して初期化して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.76">addDependent</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたビューを依存物に設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.83">changed</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.101">readFile</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">読み込んだファイルのテキストを１行ずつ読み込み木構造化するための準備をする。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.146">node</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">テキスト１行の内容"node"部分をデータ化してnodeのリストに入れる。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.163">branch</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">テキスト１行の内容"branches"部分をデータ化する。これは標準出力用である。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.183">animate</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">最初に読み込まれアニメーションのための準備をする 根ノードを探しmoveに渡す。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.210">move</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">読み込まれたノードのView座標を根ノードから葉ノードまで再帰的に求める その過程をアニメーションする</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.271">putNodeModelPoint</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">探索しているノードのmodel座標を求める。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.300">tickTock</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">アニメーションのために遅延時間を設定する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.315">countLeafNode</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">探索中のNodeが葉ノードのときleafを加算する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.331">reArrangeNodeY/a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">子ノードを探索し終えたノードのView座標を更新する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.351">getFirstLeafY</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">0番目の子供が葉ノードのY座標を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.366">getLastLeafY</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">最後の子供が葉ノードのY座標を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.378">processReport</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">変更点をViewに伝え、アニメーションのために時間停止を行う。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.391">print</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ツリー構造を標準出力する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.409">toString</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">このインスタンスを文字列にして応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.426">getNodes</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのリストを応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestModel.html#line.434">setNodes</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのリストを設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="belt">
+<h3><a name="ForestView" href="../Program/index.html#ForestView">ForestView（ビュー）</a></h3>
+</div>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">フィールド（属性：インスタンス変数）</th>
+            <th class="left-padding" abbr="2">束縛</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestController</code></td>
+            <td class="left-padding"><code>ForestController</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">制御を司るforestControllerのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestModel</code></td>
+            <td class="left-padding"><code>ForestModel</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">情報を握っているforestModelのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>offset</code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">スクロール量としてPointのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">メソッド（操作）</th>
+            <th class="left-padding" abbr="2">応答</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.43">ForestView​(ForestModel aForestModel)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.63">ForestView​(ForestModel aForestModel, ForestController aForestController)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.98">displayForest​(Graphics aGraphics)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのリストにある全てのノードを表示する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.81">paintComponent​(Graphics aGraphics)</a></code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたグラフィクスに背景色（白色）でビュー全体を塗り、その後にモデルの内容物を描画する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.129">scrollAmount()</a></code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">スクロール量（offsetの逆向きの大きさ）を応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.142">scrollBy​(Point aPoint)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">スクロール量を指定された座標分だけ相対スクロールする。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.129">scrollAmount()</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">スクロール量を指定された座標に設定（絶対スクロール）する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.167">toString()</a></code></td>
+            <td class="left-padding"><code>String</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">このインスタンスを文字列にして応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestView.html#line.184">update()</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ビューの全領域を再描画する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="belt">
+<h3><a name="ForestController" href="../Program/index.html#ForestController">ForestController（コントローラ）</a></h3>
+</div>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">フィールド（属性：インスタンス変数）</th>
+            <th class="left-padding" abbr="2">束縛</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>current</code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestModel</code></td>
+            <td class="left-padding"><code>ForestModel</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">情報を握っているModelのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestView</code></td>
+            <td class="left-padding"><code>ForestView</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">表示を司るViewのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>previous</code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">メソッド（操作）</th>
+            <th class="left-padding" abbr="2">応答</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.48">ForestController()</a></code></td>
+            <td class="left-padding"><code></code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.64">mouseClicked​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたマウスイベントからマウスカーサの位置を獲得して、 モデル座標系でのクリック位置を割り出して標準出力に出力する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.80">mouseDragged​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">マウスカーサの形状を移動の形に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、 インスタンス変数currentに設定すると共に、以前のマウスカーサの位置からの差分を計算する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.100">mouseEntered​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.110">mouseExited​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.120">mouseMoved​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.131">mousePressed​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">マウスカーサの形状を十字に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、 インスタンス変数currentに設定する共にインスタンス変数previousをインスタンス変数currentに更新する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.147">mouseReleased​(MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">マウスカーサの形状をデフォルトに戻し、指定されたマウスイベントからマウスカーサの位置を獲得して、 インスタンス変数currentに設定する共にインスタンス変数previousをインスタンス変数currentに更新する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.162">mouseWheelMoved​(MouseWheelEvent aMouseWheelEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.172">setForestModel​(ForestModel aForestModel)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたモデルをインスタンス変数forestModelに設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.185">setForestView​(ForestView aForestView)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたビューをインスタンス変数forestViewに設定し、 ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/ForestController.html#line.199">toString()</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">このインスタンスを文字列にして応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="belt">
+<h3><a name="Node" href="../Program/index.html#Node">Node（ノード）</a></h3>
+</div>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">フィールド（属性：インスタンス変数）</th>
+            <th class="left-padding" abbr="2">束縛</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>children</code></td>
+            <td class="left-padding"><code>ArrayList&lt;Node></code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードの子ノードをNodeリストのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>isSearched</code></td>
+            <td class="left-padding"><code>boolean</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードが探索されたかどうかをBooleanのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>nodeName</code></td>
+            <td class="left-padding"><code>String</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードの名前をStringのインスタンスとして束縛する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>nodeNumber</code></td>
+            <td class="left-padding"><code>Integer</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードの番号をIntegerのインスタンスとして束縛する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>parents</code></td>
+            <td class="left-padding"><code>ArrayList&lt;Node&gt;</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードの親ノードをNodeリストのインスタンスとして束縛する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>point</code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">model座標をPointのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>textWidth</code></td>
+            <td class="left-padding"><code>int</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">ノードの名前を画面上で描画したときの長さをIntegerのインスタンスとして束縛する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>viewPoint</code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">view座標をPointのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table summary="table">
+  <tbody>
+    <tr>
+      <td>
+      <table border="1" summary="table">
+        <tbody>
+          <tr>
+            <th class="left-padding" abbr="1">メソッド（操作）</th>
+            <th class="left-padding" abbr="2">応答</th>
+            <th class="left-padding" abbr="3">分類</th>
+            <th class="left-padding" abbr="4">説明</th>
+            <th class="left-padding" abbr="5">テスト結果</th>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.61">Node​(Integer aInteger, String aString, Point aPoint)</a></code></td>
+            <td class="left-padding"><code></code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.80">getChildren()</a></code></td>
+            <td class="left-padding"><code>ArrayList&lt;Node></code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">子ノードを応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.175">getIsSearched()</a></code></td>
+            <td class="left-padding"><code>boolean</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードが探索済みかどうかを応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.80">getName()</a></code></td>
+            <td class="left-padding"><code>String</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードの名前を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.95">getNumber()</a></code></td>
+            <td class="left-padding"><code>Integer</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードの番号を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.111">getParents()</a></code></td>
+            <td class="left-padding"><code>ArrayList&lt;Node&gt;</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">親ノードを応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.127">getPoint()</a></code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのModel座標を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.159">getTextWidth()</a></code></td>
+            <td class="left-padding"><code>int</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードの名前のテキストの長さを応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.143">getViewPoint()</a></code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのView座標を設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.175">setIsSearched​(boolean isSearched)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードが探索済みかどうかを設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.87">setName​(String aString)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノード名前を設定する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.103">setNumber​(Integer aInteger)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードの番号を設定する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.135">setPoint​(Point aPoint)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのModel座標を設定する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../../Forest_Program/JavaDoc/src-html/forest/Node.html#line.143">setViewPoint​(Point aPoint)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのView座標を設定する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<div class="right-small">Copyright 2019 Project Forest, Updated: 2019/08/07 (Created: 2019/07/19)</div>
+</body>
+</html>

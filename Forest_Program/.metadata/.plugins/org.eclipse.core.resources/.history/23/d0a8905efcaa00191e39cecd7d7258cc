@@ -1,0 +1,15 @@
+package forest;
+
+import java.io.File;
+
+public class ForestModel {
+
+	ForestModel(File aFile){
+
+	}
+
+	public void animated(){
+
+	}
+
+}

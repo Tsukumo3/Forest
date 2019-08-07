@@ -1,0 +1,194 @@
+package forest;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ForestModel {
+
+	/**
+	 * 依存物（Observerデザインパターンの観測者）：Viewのインスタンスたちを束縛する。
+	 * 良好（2010年7月25日）
+	 */
+	protected ArrayList<ForestView> dependents;
+
+	private File textFile;
+
+	private ArrayList<Node> nodes;
+
+	/**
+	 * インスタンスを生成して初期化して応答する。
+	 * 良好（2010年7月25日）
+	 * @throws FileNotFoundException
+	 */
+	public ForestModel(File aFile) throws FileNotFoundException
+	{
+		super();
+		//this.initialize(aFile);
+
+		this.readFile(aFile);
+
+		return;
+	}
+
+
+
+	/**
+	 * 指定されたビューを依存物に設定する。
+	 * @param aForestView このモデルの依存物となるビュー
+	 *
+	 */
+	public void addDependent(ForestView aForestView)
+	{
+		dependents.add(aForestView);
+		return;
+	}
+
+	/**
+	 * モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。
+	 *
+	 *
+	 */
+	public void changed()
+	{
+		Iterator<ForestView> anIterator = dependents.iterator();
+		while (anIterator.hasNext())
+		{
+			ForestView aForestView = anIterator.next();
+			aForestView.update();
+		}
+		return;
+	}
+
+	/**
+	 * 初期化する。
+	 *
+	 */
+	/*
+	private void initialize(File aFile)
+	{
+		dependents = new ArrayList<ForestView>();
+		setTextFile(aFile);
+		return;
+	}
+	*/
+
+	public void readFile(File aFile) throws FileNotFoundException{
+
+		FileInputStream fi;
+		try {
+			fi = new FileInputStream(aFile);
+			InputStreamReader is = new InputStreamReader(fi);
+	    	BufferedReader br = new BufferedReader(is);
+
+	    	//読み込み行
+    		String line;
+
+    		//処理するデータの内容を保管
+    		String currentReadContext = null;
+
+    		//1行ずつ読み込みを行う
+    		while ((line = br.readLine()) != null) {
+
+    			//カンマで分割した内容を配列に格納する
+    			//String[] data = line.split(",");
+
+    	        //現在読み込んでいるデータを判別//次の行へ
+    	        if(line == "trees:"){ currentReadContext = "trees"; continue;}
+    	        if(line == "nodes:"){ currentReadContext = "nodes"; continue;}
+    	        if(line == "branches:"){ currentReadContext = "branches"; continue;}
+
+    	        //treeからの情報を取得
+    	        //if(currentReadContext == "trees"){
+    	        	//trees(line);
+    	        //}
+    	        if(currentReadContext == "nodes"){ node(line); }
+    	        if(currentReadContext == "branches"){ branches(line); }
+
+    		}
+
+		} catch (IOException e1) {
+			// TODO 自動生成された catch ブロック
+			e1.printStackTrace();
+		}
+	}
+
+	public void node(String line){
+
+		String[] data = line.split(", ");
+		getNodes().add(new Node( Integer.parseInt(data[0]),data[1]));
+		return;
+	}
+
+	public void branches(String line){
+
+		return;
+	}
+
+
+	/**
+	 * 最初に読み込まれる
+	 *
+	 */
+	public void animate(){
+
+		/*
+		 * データ解析　
+		 * ノードを取得
+		 * ツリー構造化する
+		 * それをViewに渡す
+		 */
+
+
+
+		//Viewに送る
+		changed();
+	}
+
+	/**
+	 * このインスタンスを文字列にして応答する。
+	 * @return 自分自身を表す文字列
+	 */
+	public String toString()
+	{
+		StringBuffer aBuffer = new StringBuffer();
+		Class<?> aClass = this.getClass();
+		aBuffer.append(aClass.getName());
+		/*
+		aBuffer.append("[picture=");
+		aBuffer.append(picture);
+		aBuffer.append("]");
+		*/
+		return aBuffer.toString();
+	}
+
+
+
+	public File getTextFile() {
+		return textFile;
+	}
+
+
+
+	public void setTextFile(File textFile) {
+		this.textFile = textFile;
+	}
+
+
+
+	public ArrayList<Node> getNodes() {
+		return nodes;
+	}
+
+
+
+	public void setNodes(ArrayList<Node> nodes) {
+		this.nodes = nodes;
+	}
+
+}
